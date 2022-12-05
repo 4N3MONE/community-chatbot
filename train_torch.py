@@ -191,9 +191,9 @@ class KoGPT2Chat(LightningModule):
 
     def train_dataloader(self):
         if args.version == 'fmkorea':
-          data = pd.read_csv('data/fm_data.csv')
+          data = pd.read_csv('chatbot_data/fm_data.csv')
         elif args.version == 'theqoo':
-          data = pd.read_csv('data/theqoo_data.csv')
+          data = pd.read_csv('chatbot_data/theqoo_data.csv')
         self.train_set = CharDataset(data, max_len=self.hparams.max_len)
         train_dataloader = DataLoader(
             self.train_set, batch_size=self.hparams.batch_size, num_workers=2,
