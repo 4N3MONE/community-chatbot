@@ -79,7 +79,7 @@ class CharDataset(Dataset):
         #sentiment = str(turn['label'])
         #q_toked = self.tokenizer.tokenize(self.q_token + q + \
                                          # self.sent_token + sentiment)  
-        q_toked = self.tokenizer.tokenize(self.q_token + q)                                   
+        q_toked = self.tokenizer.tokenize(self.q_token + str(q))                                   
         q_len = len(q_toked)
         a_toked = self.tokenizer.tokenize(self.a_token + str(a) + self.eos)
         a_len = len(a_toked)
