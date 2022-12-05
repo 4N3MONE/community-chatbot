@@ -34,6 +34,11 @@ parser.add_argument('--train',
                     default=False,
                     help='for training')
 
+parser.add_argument('--version',
+                    type = str,
+                    default='fmkorea',
+                    help='chatbot type')
+
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
@@ -185,7 +190,10 @@ class KoGPT2Chat(LightningModule):
         return torch.LongTensor(data), torch.LongTensor(mask), torch.LongTensor(label)
 
     def train_dataloader(self):
-        data = pd.read_csv('/content/drive/MyDrive/nlp_final/final_data/fm_korea_str.csv')
+        if args.version == 'fmkorea':
+          data = pd.read_csv('Chatbot_data/fm_data.csv')
+        elif args.version == 'theqoo':
+          data = pd.read_csv('Chatbot_data/theqoo_data.csv')
         self.train_set = CharDataset(data, max_len=self.hparams.max_len)
         train_dataloader = DataLoader(
             self.train_set, batch_size=self.hparams.batch_size, num_workers=2,
