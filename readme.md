@@ -3,7 +3,7 @@
 
 ```bash
 git clone --recurse-submodules https://github.com/4N3MONE/community-chatbot.git
-cd KoGPT2-chatbot
+cd community-chatbot
 pip3 install -r requirements.txt 
 ```
 
