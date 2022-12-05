@@ -205,9 +205,8 @@ class KoGPT2Chat(LightningModule):
         #sent_tokens = tok.tokenize(sent)
         with torch.no_grad():
             while 1:
-                q = input('user > ').strip()
-                if q == 'quit':
-                    break
+                p = input('user > ')    #.strip()
+                q = p.strip()
                 a = ''
                 while 1:
                     #input_ids = torch.LongTensor(tok.encode(U_TKN + q + SENT + sent + S_TKN + a)).unsqueeze(dim=0)
