@@ -207,16 +207,21 @@ class KoGPT2Chat(LightningModule):
             while 1:
                 p = input('user > ')    #.strip()
                 q = p.strip()
+                if len(q)==1 : continue
+                else : pass
                 a = ''
                 while 1:
                     #input_ids = torch.LongTensor(tok.encode(U_TKN + q + SENT + sent + S_TKN + a)).unsqueeze(dim=0)
                     input_ids = torch.LongTensor(tok.encode(U_TKN + q + S_TKN + a)).unsqueeze(dim=0)
+                    #print(f'input_ids : {input_ids}')
                     pred = self(input_ids)
+                    #print(f'pred : {pred}')
                     gen = tok.convert_ids_to_tokens(
                         torch.argmax(
                             pred,
                             dim=-1).squeeze().numpy().tolist())[-1]
-                    if gen == EOS:
+                    #print(f'gen : {gen}')
+                    if gen == EOS or gen ==PAD:
                         break
                     a += gen.replace('▁', ' ')
                 print("Bot > {}".format(a.strip()))
