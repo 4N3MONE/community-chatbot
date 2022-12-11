@@ -207,6 +207,8 @@ class KoGPT2Chat(LightningModule):
             while 1:
                 p = input('user > ')    #.strip()
                 q = p.strip()
+                if q == 'quit':
+                    break
                 if len(q)==1 : continue
                 else : pass
                 a = ''
